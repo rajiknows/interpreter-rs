@@ -1,0 +1,3 @@
+let a = 5; // initialize a
+let b = 10; // initialize b
+print(a + b); // print the result
