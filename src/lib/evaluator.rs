@@ -4,13 +4,13 @@ use anyhow::{anyhow, Result};
 use std::collections::HashMap;
 
 pub struct Evaluator {
-    env: HashMap<String, i64>,
+    store: HashMap<String, i64>,
 }
 
 impl Evaluator {
     pub fn new() -> Self {
         Evaluator {
-            env: HashMap::new(),
+            store: HashMap::new(),
         }
     }
 
@@ -25,7 +25,7 @@ impl Evaluator {
         match stmt {
             Stmt::Let(name, expr) => {
                 let value = self.eval_expr(expr)?;
-                self.env.insert(name, value);
+                self.store.insert(name, value);
                 Ok(())
             }
             Stmt::Expr(expr) => {
@@ -44,7 +44,7 @@ impl Evaluator {
         match expr {
             Expr::Int(value) => Ok(value),
             Expr::Ident(name) => self
-                .env
+                .store
                 .get(&name)
                 .cloned()
                 .ok_or_else(|| anyhow!("undefined variable: {}", name)),

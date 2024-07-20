@@ -1,9 +1,9 @@
-
+// ast stands for abstract syntax tree 
 #[derive(Debug, PartialEq, Clone)]
 pub enum Expr {
-    Ident(String),
-    Int(i64),
-    Infix(Box<Expr>, String, Box<Expr>),
+    Ident(String),// identifier
+    Int(i64), 
+    Infix(Box<Expr>, String, Box<Expr>),// infix expression 
 }
 
 #[derive(Debug, PartialEq, Clone)]
